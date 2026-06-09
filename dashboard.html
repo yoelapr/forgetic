@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Forgetic Dashboard — Real-time eBay product intelligence, market analysis, and business insights for your online store." />
+  <title>Forgetic — eBay Business Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/main.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+  <div class="app-layout">
+
+    <!-- ═══════════════ SIDEBAR ═══════════════ -->
+    <aside class="sidebar" id="sidebar" role="navigation" aria-label="Main navigation">
+
+      <!-- Brand -->
+      <div class="sidebar-brand">
+        <div class="brand-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <span class="brand-name">Forgetic</span>
+      </div>
+
+      <!-- URL Input -->
+      <div class="url-input-section">
+        <div class="url-input-label">
+          <div class="dot"></div>
+          eBay Product URL
+        </div>
+        <div class="url-input-wrapper">
+          <svg class="url-input-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+          <input
+            type="url"
+            id="url-input"
+            placeholder="Paste eBay URL & press Enter"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="eBay product URL"
+          />
+          <button class="url-submit-btn" id="url-submit-btn" title="Analyze URL" aria-label="Analyze product">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
+        <!-- Active URL chip -->
+        <div class="active-url-chip" id="active-url-chip" title="Clear current URL">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+          </svg>
+          <span id="active-url-text">No URL</span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" style="margin-left:auto; flex-shrink:0; width:10px; height:10px;">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="sidebar-nav" id="sidebar-nav">
+        <span class="nav-section-label">Analytics</span>
+
+        <div class="nav-item active" data-section="overview" id="nav-overview" role="button" tabindex="0" aria-current="page">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="3" width="7" height="7" rx="1"/>
+            <rect x="14" y="14" width="7" height="7" rx="1"/>
+            <rect x="3" y="14" width="7" height="7" rx="1"/>
+          </svg>
+          Overview
+        </div>
+
+        <div class="nav-item" data-section="research" id="nav-research" role="button" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          Product Research
+        </div>
+
+        <div class="nav-item" data-section="estimator" id="nav-estimator" role="button" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+          </svg>
+          Estimator
+        </div>
+
+        <div class="nav-item" data-section="demand" id="nav-demand" role="button" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+          </svg>
+          Demand
+        </div>
+
+        <div class="nav-item" data-section="customer" id="nav-customer" role="button" tabindex="0">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          Customer Insight
+        </div>
+      </nav>
+
+      <!-- User / Footer -->
+      <div class="sidebar-footer">
+        <div class="sidebar-user" id="sidebar-user">
+          <div class="user-avatar" id="user-avatar-initials">FG</div>
+          <div class="user-info">
+            <div class="user-name" id="user-display-name">Forgetic User</div>
+            <div class="user-email" id="user-display-email">user@forgetic.com</div>
+          </div>
+          <button class="logout-btn" id="logout-btn" title="Sign out" aria-label="Sign out">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ═══════════════ MAIN CONTENT ═══════════════ -->
+    <main class="main-content" id="main-content">
+
+      <!-- Header -->
+      <header class="dashboard-header" id="dashboard-header">
+        <div class="header-title-area">
+          <h1 class="header-section-title" id="header-section-title">Overview</h1>
+          <p class="header-section-desc" id="header-section-desc">Market summary and key performance indicators</p>
+        </div>
+        <div class="header-actions">
+          <div class="header-date" id="header-date"></div>
+          <!-- Mobile menu toggle -->
+          <button class="btn btn-ghost btn-sm" id="mobile-menu-btn" style="display:none;" aria-label="Toggle menu">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" width="20" height="20">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Body -->
+      <div class="content-body" id="content-body">
+        <!-- Dynamically rendered by JS -->
+        <div class="welcome-state" id="welcome-state">
+          <div class="welcome-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
+            </svg>
+          </div>
+          <h2 class="welcome-title">Paste an eBay Product URL</h2>
+          <p class="welcome-desc">Enter any eBay product listing URL in the sidebar to instantly unlock real-time market intelligence, competitor analysis, and profit projections.</p>
+          <div class="welcome-steps">
+            <div class="welcome-step">
+              <div class="step-num">1</div>
+              Paste product URL
+            </div>
+            <div class="welcome-step">
+              <div class="step-num">2</div>
+              Press Enter or →
+            </div>
+            <div class="welcome-step">
+              <div class="step-num">3</div>
+              Explore your insights
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay" role="status" aria-live="polite">
+    <div class="loading-spinner"></div>
+    <div class="loading-text" id="loading-text">Analyzing product data...</div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toast-container" aria-live="polite"></div>
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <!-- Forgetic JS Modules -->
+  <script src="js/scraper.js"></script>
+  <script src="js/overview.js"></script>
+  <script src="js/research.js"></script>
+  <script src="js/estimator.js"></script>
+  <script src="js/demand.js"></script>
+  <script src="js/customer.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
